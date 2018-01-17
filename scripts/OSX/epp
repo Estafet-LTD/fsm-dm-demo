@@ -1,0 +1,81 @@
+
+usage() {
+  echo Usage:  'epp [flags] <scribble-file> <protocol-name> <target-folder> <role-list>'
+  cat <<EOF
+  
+ <scribble-file>    Source Scribble module (.scr file) 
+ <protocol-name>    The protocol name in the scribble-file 
+ <target-folder>    The target folder into which the generated artefacts will be placed 
+ <role-list> 	    The list of roles in the scrbble-file that you wish to project
+  
+ Options: 
+  -h, --help        Show this info and exit
+  --verbose         Echo the java command
+EOF
+}
+
+usage=0
+verbose=0
+
+#
+# Args
+#
+while true; do
+    case "$1" in
+        "")
+            break
+            ;;
+        -h)
+            usage=1
+            break
+            ;;
+        --help)
+            usage=1
+            break
+            ;;
+        -v)
+            verbose=1
+            shift
+            ;;
+        --verbose)
+            verbose=1
+            shift
+            ;;
+	*)
+	    break
+	    ;;
+    esac
+done
+
+SCRIBBLE=$1;shift
+PROTOCOL=$1;shift
+GENERATED=$1;shift
+
+if [ "$usage" = 1 ]; then
+  usage
+  exit 0
+fi
+
+# For each role 
+#   project out the standard FSM as DOT notation using the scribble compiler
+#   xlate the DOT version of the FSM into EasyFSM to enable execution
+#   transform the FSM into a nicer easier to read version in DOT notation
+
+echo projecting out $@ from $PROTOCOL in $SCRIBBLE description into folder $GENERATED
+
+for i in $@
+do
+	if [ "$verbose" = 1 ]; then
+		echo projecting out $i into an fsm
+	fi
+	scribblec $SCRIBBLE -fsm $PROTOCOL $i >$GENERATED/$i.fsm
+	if [ "$verbose" = 1 ]; then
+		echo transforming the fsm for $i into an easyFSM config file
+	fi
+	fsmxlate $GENERATED/${i}.fsm -easyFSM ${i} org.estafet.scribble.example >$GENERATED/${i}_config.txt
+done
+echo
+echo $@ generated from $PROTOCOL in $SCRIBBLE
+if [ "$verbose" = 1 ]; then
+	ls -ls $GENERATED
+fi

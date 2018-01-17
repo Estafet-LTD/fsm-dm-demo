@@ -1,0 +1,94 @@
+#!/bin/sh
+
+
+# Directory containing Scribble jars
+LIB=$SCRIBBLEDIR/lib
+
+PRG=`basename "$0"`
+DIR=`dirname "$0"`   # Non Cygwin..
+
+usage() {
+  echo Usage:  'fsmxlate <Options> <fsm-dot-file> <role-name> <package>...'
+  cat <<EOF
+  
+ <fsm-dot-file>     Source finite state machine graphviz dot file
+ <role-name>        The role name for this finite state machine
+ <package>	    The package name for business logic bindings
+  
+ Options: 
+  -h,                                         Show this info and exit
+  -easyFSM 				      Generate easyFSM config file
+  -dot 					      Generate easy to read dot file
+
+ Environment:
+  SCRIBBLEDIR should be set to point to this deployments root folder
+EOF
+}
+
+fixpath() {
+  windows=0
+
+  if [ `uname | grep -c CYGWIN` -ne 0 ]; then
+    windows=1
+  fi
+
+  cp="$1"
+  if [ "$windows" = 1 ]; then
+      cygpath -pw "$cp"
+  else
+      echo "$cp"
+  fi
+}
+
+ARGS=
+
+CLASSPATH=$CLASSPATH:$LIB/antlr-4.4-complete.jar
+CLASSPATH=$CLASSPATH:$LIB/log4j-1.2.17.jar
+CLASSPATH=$CLASSPATH:$LIB/fsmxlator.jar
+CLASSPATH="'"`fixpath "$CLASSPATH"`"'"
+
+usage=0
+verbose=0
+while true; do
+    case "$1" in
+        "")
+            break
+            ;;
+        -h)
+            usage=1
+            break
+            ;;
+        --help)
+            usage=1
+            break
+            ;;
+        *)
+            ARGS="$ARGS '$1'"
+            shift
+            ;;
+    esac
+done
+
+if [ "$usage" = 1 ]; then
+  usage
+  exit 0
+fi
+if [ "${SCRIBBLEDIR}"EMPTY = "EMPTY" ]; then
+        echo The environment variable 'SCRIBBLEDIR' is not set in your environment.
+	echo
+        usage
+        exit 0
+fi
+
+CMD='java -cp '$CLASSPATH' com.estafet.scribble.fsm2Java.grammar.grammarhandler.MyDOT2FSM'
+
+fsmxlatec() {
+  eval $CMD "$@"
+}
+
+if [ "$verbose" = 1 ]; then
+  echo $CMD "$ARGS"
+fi
+
+fsmxlatec "$ARGS"
+

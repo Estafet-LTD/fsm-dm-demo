@@ -1,0 +1,91 @@
+#!/bin/sh
+
+usage() {
+  echo Usage:  'fsm [Options] <role-name> <client-server> <source> <ip-map> [<delay>]'
+  cat <<EOF
+ <role-name>	    The role or end point name of this finite state machine
+ <client-server>    Can be either client (awaits input on user) or server (awaits on comms channel)
+ <source-folder>    	    The source configuration for this finite state machine
+ <ip-map>     	    The ip mapping table for the finite state machine. 
+ <delay> 	    The delay in ms for each state transition
+  
+ Options: 
+  -h, --help        Show this info and exit
+  -v, --verbose     Echo the java command
+
+ Environment:
+  SCRIBBLEDIR should be set to point to this deployments root folder
+EOF
+}
+
+usage=0
+verbose=0
+
+#
+# Args
+#
+while true; do
+    case "$1" in
+        "")
+            break
+            ;;
+        -h)
+            usage=1
+            break
+            ;;
+        --help)
+            usage=1
+            break
+            ;;
+        -v)
+            verbose=1
+            shift
+            ;;
+        --verbose)
+            verbose=1
+            shift
+            ;;
+	*)
+	    break
+	    ;;
+    esac
+done
+
+if [ "$usage" = 1 ]; then
+  usage
+  exit 0
+fi
+if [ "${SCRIBBLEDIR}"EMPTY = "EMPTY" ]; then
+	echo The environment variable 'SCRIBBLEDIR' is not set in your environment.
+	echo
+	usage
+  	exit 0
+fi
+if [ $# -lt 4 ]; then
+	usage
+	exit 0
+fi
+
+# Directory containing fsm jars
+NAME=$1
+ROLE=$2
+FOLDER=$3
+IPMAP=$4
+DELAY=$5
+
+
+LIB=${SCRIBBLEDIR}/lib
+
+PRG=`basename "$0"`
+DIR=`dirname "$0"`   # Non Cygwin..
+
+ARGS=
+
+CLASSPATH=$LIB/fsmserver.jar
+CLASSPATH=$CLASSPATH:$LIB/EasyFSM-1.1.0.jar
+CLASSPATH=$CLASSPATH:$LIB/log4j-1.2.8.jar
+
+CMD='java -cp '$CLASSPATH' com.estafet.fsm.example.FSMServer' 
+echo $CMD ${NAME} ${FOLDER}/${NAME}_config.txt ${IPMAP} ${ROLE} ${DELAY}
+$CMD ${NAME} ${FOLDER}/${NAME}_config.txt ${IPMAP} ${ROLE} ${DELAY}
+
