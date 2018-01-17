@@ -9,7 +9,7 @@
   	<dependency>
   		<groupId>com.uber.jaeger</groupId>
   		<artifactId>jaeger-core</artifactId>
-  		<version>0.21.0</version>
+  		<version>0.23.0</version>
   	</dependency>
   	<dependency>
   		<groupId>com.scribble</groupId>
@@ -17,11 +17,11 @@
   		<version>0.0.1-SNAPSHOT</version>
   		<scope>provided</scope>
   	</dependency>
-  	<dependency>
+  	<!-- <dependency>
   		<groupId>OpenTracing</groupId>
   		<artifactId>opentracing-api</artifactId>
   		<version>0.31.0</version>
-  	</dependency>
+  	</dependency> -->
   </dependencies>
   <url>https://www.mvnrepository.com/artifact/io.opentracing/opentracing-api</url>
 </project>
