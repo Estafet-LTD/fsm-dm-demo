@@ -1,28 +1,109 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>fsm-dm-demo</groupId>
-  <artifactId>demo</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>fsm-dm-demo</name>
-  <description>Scribble generated finite state machine with distributed monitoring</description>
-  <dependencies>
-  	<dependency>
-  		<groupId>com.uber.jaeger</groupId>
-  		<artifactId>jaeger-core</artifactId>
-  		<version>0.23.0</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>com.scribble</groupId>
-  		<artifactId>easyfsm</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  		<scope>provided</scope>
-  	</dependency>
-  	<!-- <dependency>
-  		<groupId>OpenTracing</groupId>
-  		<artifactId>opentracing-api</artifactId>
-  		<version>0.31.0</version>
-  	</dependency> -->
-  </dependencies>
-  <url>https://www.mvnrepository.com/artifact/io.opentracing/opentracing-api</url>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fsm-dm-demo</groupId>
+	<artifactId>demo</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>fsm-dm-demo</name>
+	<description>Scribble generated finite state machine with distributed monitoring</description>
+	<dependencies>
+		<dependency>
+			<groupId>com.uber.jaeger</groupId>
+			<artifactId>jaeger-core</artifactId>
+			<version>0.23.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.scribble</groupId>
+			<artifactId>easyfsm</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${scribble.dir}/lib</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>false</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<id>copy-resources-1</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${scribble.dir}/bin</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${basedir}/scripts/OSX</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-resources-2</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${scribble.dir}/config</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${basedir}/config</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>copy-output-jar</id>
+						<phase>install</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target name="copy output jar">
+								<copy todir="${scribble.dir}/lib">
+									<fileset dir="${project.build.directory}" includes="*.jar"/>
+								</copy>
+								<chmod file="${scribble.dir}/bin/fsm" perm="+x"/>
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<properties>
+		<scribble.dir>${project.build.directory}/scribble</scribble.dir>
+	</properties>
 </project>
 

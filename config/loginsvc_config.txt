@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FSM>
+
+<STATE id = "START_loginsvc_6">
+	<MESSAGE id = "accept_connection__from_requestor" action = "org.estafet.scribble.example.accept_connection" nextState = "__accept_connection__from_requestor_DONE_8"/>
+</STATE>
+<STATE id = "__accept_connection__from_requestor_DONE_8">
+	<MESSAGE id = "receiveMessage(login(username, password))__from_requestor" action = "org.estafet.scribble.example.receiveMessage" nextState = "__receiveMessage(login(username, password))__from_requestor_DONE_9"/>
+</STATE>
+<STATE id = "__receiveMessage(login(username, password))__from_requestor_DONE_9">
+	<MESSAGE id = "sendMessage(loginFailure())__to_requestor" action = "org.estafet.scribble.example.sendMessage" nextState = "__sendMessage(loginFailure())__to_requestor_DONE_10"/>
+	<MESSAGE id = "sendMessage(loginSuccess(uuid))__to_requestor" action = "org.estafet.scribble.example.sendMessage" nextState = "__sendMessage(loginSuccess(uuid))__to_requestor_DONE_7"/>
+</STATE>
+<STATE id = "__sendMessage(loginFailure())__to_requestor_DONE_10">
+	<MESSAGE id = "request_disconnection__from_requestor" action = "org.estafet.scribble.example.request_disconnection" nextState = "START_loginsvc_6"/>
+</STATE>
+<STATE id = "__sendMessage(loginSuccess(uuid))__to_requestor_DONE_7">
+</STATE>
+
+</FSM>

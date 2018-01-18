@@ -1,0 +1,6 @@
+requestor,		127.0.0.1, 9090
+loginsvc,		127.0.0.1, 9091
+authorisersvc,		127.0.0.1, 9092
+filtersvc,		127.0.0.1, 9093
+suppliersvc,		127.0.0.1, 9094
+contractsvc,		127.0.0.1, 9095
