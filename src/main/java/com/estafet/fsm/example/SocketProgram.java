@@ -83,7 +83,6 @@ public class SocketProgram
         	String clear = "[H[2J";
         	System.out.print(clear);
         	System.out.println("SocketProgram - tonight Matthew I shall be " + getThisRoleName() + " as a " + (client() ? "client" : "server"));
-        	Thread.sleep(5000);
         	
     		try 
     		{
@@ -547,6 +546,7 @@ public class SocketProgram
     }
 
     public static void main(String[] args) {
+	System.out.println("Starting ...");
         try {
         	SocketProgram p = null;
         	if (args.length >= 3)

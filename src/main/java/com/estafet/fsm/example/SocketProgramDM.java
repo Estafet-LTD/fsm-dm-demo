@@ -585,6 +585,7 @@ public class SocketProgramDM
     }
 
     public static void main(String[] args) {
+	System.out.println("Starting ...");
         try {
         	SocketProgramDM p = null;
         	if (args.length >= 3)
