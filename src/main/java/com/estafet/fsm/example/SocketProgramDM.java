@@ -11,6 +11,7 @@ import org.xml.sax.*;
 
 import io.opentracing.Span;
 import io.opentracing.util.GlobalTracer;
+import io.opentracing.Tracer;
 
 import com.uber.jaeger.Configuration;
 import com.uber.jaeger.Configuration.ReporterConfiguration;
@@ -574,12 +575,13 @@ public class SocketProgramDM
     	return role;
     }
     
-    public static com.uber.jaeger.Tracer initTracer(String service)
+    public static Tracer initTracer(String service)
     {
         SamplerConfiguration samplerConfig = new SamplerConfiguration("const", 1);
-        ReporterConfiguration reporterConfig = new ReporterConfiguration(true, null, null, null, null);
-        Configuration config = new Configuration(service, samplerConfig, reporterConfig);
-        return (com.uber.jaeger.Tracer) config.getTracer();
+        ReporterConfiguration reporterConfig = new ReporterConfiguration(true, null, null, null, null);        
+        return new com.uber.jaeger.Configuration("scribble",
+        		samplerConfig,
+				reporterConfig).getTracer();
     }
 
     public static void main(String[] args) {

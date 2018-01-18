@@ -85,7 +85,7 @@ CLASSPATH=$LIB/demo-0.0.1-SNAPSHOT.jar
 CLASSPATH=$CLASSPATH:$LIB/easyfsm-0.0.1-SNAPSHOT.jar
 CLASSPATH=$CLASSPATH:$LIB/log4j-1.2.8.jar
 
-CMD='java -cp '$CLASSPATH' com.estafet.fsm.example.SocketProgram' 
+CMD='java -cp '$CLASSPATH' com.estafet.fsm.example.SocketProgramDM' 
 echo $CMD ${NAME} ${FOLDER}/${NAME}_config.txt ${IPMAP} ${ROLE} ${DELAY}
 $CMD ${NAME} ${FOLDER}/${NAME}_config.txt ${IPMAP} ${ROLE} ${DELAY}
 
