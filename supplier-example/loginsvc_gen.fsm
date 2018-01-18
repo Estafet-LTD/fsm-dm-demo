@@ -1,0 +1,15 @@
+digraph G {
+compound = true;
+
+"6" [label="START_loginsvc_6"];
+"6"->"8" [label="__accept_connection__from_requestor"];
+"8" [label="__accept_connection__from_requestor_DONE_8"];
+"8"->"9" [label="__receiveMessage(login(username, password))__from_requestor"];
+"9" [label="__receiveMessage(login(username, password))__from_requestor_DONE_9"];
+"9"->"10" [label="__sendMessage(loginFailure())__to_requestor"];
+"10" [label="__sendMessage(loginFailure())__to_requestor_DONE_10"];
+"10"->"6" [label="__request_disconnection__from_requestor"];
+"9"->"7" [label="__sendMessage(loginSuccess(uuid))__to_requestor"];
+"7" [label="__sendMessage(loginSuccess(uuid))__to_requestor_DONE_7"];
+}
+

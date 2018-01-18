@@ -1,0 +1,14 @@
+
+digraph G {
+compound = true;
+"6" [ label="6: src_SupplierProtocol_Suppliers_loginsvc_Suppliers_loginsvc___loginsvc__requestor_" ];
+"6" -> "8" [ label="requestor??()" ];
+"8" [ label="8: " ];
+"8" -> "9" [ label="requestor?login(username, password)" ];
+"9" [ label="9: " ];
+"9" -> "10" [ label="requestor!loginFailure()" ];
+"10" [ label="10: " ];
+"10" -> "6" [ label="requestor-/-()" ];
+"9" -> "7" [ label="requestor!loginSuccess(uuid)" ];
+"7" [ label="7: " ];
+}

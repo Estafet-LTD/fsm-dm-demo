@@ -1,0 +1,46 @@
+digraph G {
+compound = true;
+
+"75" [label="START_authorisersvc_75"];
+"75"->"77" [label="__accept_connection__from_requestor"];
+"77" [label="__accept_connection__from_requestor_DONE_77"];
+"77"->"78" [label="__request_connection__to_filtersvc"];
+"78" [label="__request_connection__to_filtersvc_DONE_78"];
+"78"->"79" [label="__receiveMessage(getSuppliers(uuid))__from_requestor"];
+"79" [label="__receiveMessage(getSuppliers(uuid))__from_requestor_DONE_79"];
+"79"->"80" [label="__sendMessage(deny())__to_requestor"];
+"80" [label="__sendMessage(deny())__to_requestor_DONE_80"];
+"80"->"78" [label="__sendMessage(exit())__to_filtersvc"];
+"79"->"81" [label="__request_connection__to_suppliersvc"];
+"81" [label="__request_connection__to_suppliersvc_DONE_81"];
+"81"->"82" [label="__sendMessage(getsuppliers(uuid))__to_suppliersvc"];
+"82" [label="__sendMessage(getsuppliers(uuid))__to_suppliersvc_DONE_82"];
+"82"->"83" [label="__receiveMessage(getsuppliersRtn(supplierdetails))__from_suppliersvc"];
+"83" [label="__receiveMessage(getsuppliersRtn(supplierdetails))__from_suppliersvc_DONE_83"];
+"83"->"84" [label="__sendMessage(filterSupplier(usercontext, filters, supplierdetails))__to_filtersvc"];
+"84" [label="__sendMessage(filterSupplier(usercontext, filters, supplierdetails))__to_filtersvc_DONE_84"];
+"84"->"85" [label="__receiveMessage(filtered())__from_filtersvc"];
+"85" [label="__receiveMessage(filtered())__from_filtersvc_DONE_85"];
+"85"->"86" [label="__request_disconnection__from_suppliersvc"];
+"86" [label="__request_disconnection__from_suppliersvc_DONE_86"];
+"86"->"78" [label="__sendMessage(getSuppliersRtn())__to_requestor"];
+"78"->"87" [label="__receiveMessage(getContracts(uuid))__from_requestor"];
+"87" [label="__receiveMessage(getContracts(uuid))__from_requestor_DONE_87"];
+"87"->"88" [label="__sendMessage(deny())__to_requestor"];
+"88" [label="__sendMessage(deny())__to_requestor_DONE_88"];
+"88"->"78" [label="__sendMessage(exit())__to_filtersvc"];
+"87"->"89" [label="__request_connection__to_contractsvc"];
+"89" [label="__request_connection__to_contractsvc_DONE_89"];
+"89"->"90" [label="__sendMessage(getContracts(uuid))__to_contractsvc"];
+"90" [label="__sendMessage(getContracts(uuid))__to_contractsvc_DONE_90"];
+"90"->"91" [label="__receiveMessage(getContractsRtn(contractdetails))__from_contractsvc"];
+"91" [label="__receiveMessage(getContractsRtn(contractdetails))__from_contractsvc_DONE_91"];
+"91"->"92" [label="__sendMessage(filterContract(usercontext, filters, contractdetails))__to_filtersvc"];
+"92" [label="__sendMessage(filterContract(usercontext, filters, contractdetails))__to_filtersvc_DONE_92"];
+"92"->"93" [label="__receiveMessage(filtered())__from_filtersvc"];
+"93" [label="__receiveMessage(filtered())__from_filtersvc_DONE_93"];
+"93"->"94" [label="__request_disconnection__from_contractsvc"];
+"94" [label="__request_disconnection__from_contractsvc_DONE_94"];
+"94"->"78" [label="__sendMessage(contracts())__to_requestor"];
+}
+

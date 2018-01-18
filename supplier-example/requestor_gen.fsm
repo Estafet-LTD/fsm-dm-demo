@@ -1,0 +1,25 @@
+digraph G {
+compound = true;
+
+"31" [label="START_requestor_31"];
+"31"->"33" [label="__request_connection__to_loginsvc"];
+"33" [label="__request_connection__to_loginsvc_DONE_33"];
+"33"->"34" [label="__sendMessage(login(username, password))__to_loginsvc"];
+"34" [label="__sendMessage(login(username, password))__to_loginsvc_DONE_34"];
+"34"->"35" [label="__receiveMessage(loginFailure())__from_loginsvc"];
+"35" [label="__receiveMessage(loginFailure())__from_loginsvc_DONE_35"];
+"35"->"31" [label="__request_disconnection__from_loginsvc"];
+"34"->"36" [label="__receiveMessage(loginSuccess(uuid))__from_loginsvc"];
+"36" [label="__receiveMessage(loginSuccess(uuid))__from_loginsvc_DONE_36"];
+"36"->"37" [label="__request_connection__to_authorisersvc"];
+"37" [label="__request_connection__to_authorisersvc_DONE_37"];
+"37"->"38" [label="__sendMessage(getSuppliers(uuid))__to_authorisersvc"];
+"38" [label="__sendMessage(getSuppliers(uuid))__to_authorisersvc_DONE_38"];
+"38"->"37" [label="__receiveMessage(deny())__from_authorisersvc"];
+"38"->"37" [label="__receiveMessage(getSuppliersRtn())__from_authorisersvc"];
+"37"->"39" [label="__sendMessage(getContracts(uuid))__to_authorisersvc"];
+"39" [label="__sendMessage(getContracts(uuid))__to_authorisersvc_DONE_39"];
+"39"->"37" [label="__receiveMessage(deny())__from_authorisersvc"];
+"39"->"37" [label="__receiveMessage(contracts())__from_authorisersvc"];
+}
+

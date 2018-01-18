@@ -1,0 +1,14 @@
+
+digraph G {
+compound = true;
+"390" [ label="390: src_SupplierProtocol_Suppliers_filtersvc_Suppliers_filtersvc___authorisersvc__filtersvc_" ];
+"390" -> "392" [ label="authorisersvc??()" ];
+"392" [ label="392: src_SupplierProtocol_Main_filtersvc_Main_filtersvc___authorisersvc__filtersvc_" ];
+"392" -> "393" [ label="authorisersvc?filterSupplier(usercontext, filters, supplierdetails)" ];
+"393" [ label="393: " ];
+"393" -> "392" [ label="authorisersvc!filtered()" ];
+"392" -> "394" [ label="authorisersvc?filterContract(usercontext, filters, contractdetails)" ];
+"394" [ label="394: " ];
+"394" -> "392" [ label="authorisersvc!filtered()" ];
+"392" -> "392" [ label="authorisersvc?exit()" ];
+}

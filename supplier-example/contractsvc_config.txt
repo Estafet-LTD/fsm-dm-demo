@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FSM>
+
+<STATE id = "START_contractsvc_436">
+	<MESSAGE id = "accept_connection__from_authorisersvc" action = "org.estafet.scribble.example.accept_connection" nextState = "__accept_connection__from_authorisersvc_DONE_438"/>
+</STATE>
+<STATE id = "__accept_connection__from_authorisersvc_DONE_438">
+	<MESSAGE id = "receiveMessage(getContracts(uuid))__from_authorisersvc" action = "org.estafet.scribble.example.receiveMessage" nextState = "__receiveMessage(getContracts(uuid))__from_authorisersvc_DONE_439"/>
+</STATE>
+<STATE id = "__receiveMessage(getContracts(uuid))__from_authorisersvc_DONE_439">
+	<MESSAGE id = "sendMessage(getContractsRtn(contractdetails))__to_authorisersvc" action = "org.estafet.scribble.example.sendMessage" nextState = "__sendMessage(getContractsRtn(contractdetails))__to_authorisersvc_DONE_440"/>
+</STATE>
+<STATE id = "__sendMessage(getContractsRtn(contractdetails))__to_authorisersvc_DONE_440">
+	<MESSAGE id = "request_disconnection__from_authorisersvc" action = "org.estafet.scribble.example.request_disconnection" nextState = "__request_disconnection__from_authorisersvc_DONE_441"/>
+</STATE>
+<STATE id = "__request_disconnection__from_authorisersvc_DONE_441">
+	<MESSAGE id = "accept_connection__from_authorisersvc" action = "org.estafet.scribble.example.accept_connection" nextState = "__accept_connection__from_authorisersvc_DONE_442"/>
+</STATE>
+<STATE id = "__accept_connection__from_authorisersvc_DONE_442">
+	<MESSAGE id = "receiveMessage(getContracts(uuid))__from_authorisersvc" action = "org.estafet.scribble.example.receiveMessage" nextState = "__receiveMessage(getContracts(uuid))__from_authorisersvc_DONE_443"/>
+</STATE>
+<STATE id = "__receiveMessage(getContracts(uuid))__from_authorisersvc_DONE_443">
+	<MESSAGE id = "sendMessage(getContractsRtn(contractdetails))__to_authorisersvc" action = "org.estafet.scribble.example.sendMessage" nextState = "__sendMessage(getContractsRtn(contractdetails))__to_authorisersvc_DONE_444"/>
+</STATE>
+<STATE id = "__sendMessage(getContractsRtn(contractdetails))__to_authorisersvc_DONE_444">
+	<MESSAGE id = "request_disconnection__from_authorisersvc" action = "org.estafet.scribble.example.request_disconnection" nextState = "__request_disconnection__from_authorisersvc_DONE_441"/>
+</STATE>
+
+</FSM>

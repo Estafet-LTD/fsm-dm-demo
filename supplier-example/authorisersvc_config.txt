@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FSM>
+
+<STATE id = "START_authorisersvc_75">
+	<MESSAGE id = "accept_connection__from_requestor" action = "org.estafet.scribble.example.accept_connection" nextState = "__accept_connection__from_requestor_DONE_77"/>
+</STATE>
+<STATE id = "__accept_connection__from_requestor_DONE_77">
+	<MESSAGE id = "request_connection__to_filtersvc" action = "org.estafet.scribble.example.request_connection" nextState = "__request_connection__to_filtersvc_DONE_78"/>
+</STATE>
+<STATE id = "__request_connection__to_filtersvc_DONE_78">
+	<MESSAGE id = "receiveMessage(getSuppliers(uuid))__from_requestor" action = "org.estafet.scribble.example.receiveMessage" nextState = "__receiveMessage(getSuppliers(uuid))__from_requestor_DONE_79"/>
+	<MESSAGE id = "receiveMessage(getContracts(uuid))__from_requestor" action = "org.estafet.scribble.example.receiveMessage" nextState = "__receiveMessage(getContracts(uuid))__from_requestor_DONE_87"/>
+</STATE>
+<STATE id = "__receiveMessage(getSuppliers(uuid))__from_requestor_DONE_79">
+	<MESSAGE id = "sendMessage(deny())__to_requestor" action = "org.estafet.scribble.example.sendMessage" nextState = "__sendMessage(deny())__to_requestor_DONE_80"/>
+	<MESSAGE id = "request_connection__to_suppliersvc" action = "org.estafet.scribble.example.request_connection" nextState = "__request_connection__to_suppliersvc_DONE_81"/>
+</STATE>
+<STATE id = "__sendMessage(deny())__to_requestor_DONE_80">
+	<MESSAGE id = "sendMessage(exit())__to_filtersvc" action = "org.estafet.scribble.example.sendMessage" nextState = "__request_connection__to_filtersvc_DONE_78"/>
+</STATE>
+<STATE id = "__request_connection__to_suppliersvc_DONE_81">
+	<MESSAGE id = "sendMessage(getsuppliers(uuid))__to_suppliersvc" action = "org.estafet.scribble.example.sendMessage" nextState = "__sendMessage(getsuppliers(uuid))__to_suppliersvc_DONE_82"/>
+</STATE>
+<STATE id = "__sendMessage(getsuppliers(uuid))__to_suppliersvc_DONE_82">
+	<MESSAGE id = "receiveMessage(getsuppliersRtn(supplierdetails))__from_suppliersvc" action = "org.estafet.scribble.example.receiveMessage" nextState = "__receiveMessage(getsuppliersRtn(supplierdetails))__from_suppliersvc_DONE_83"/>
+</STATE>
+<STATE id = "__receiveMessage(getsuppliersRtn(supplierdetails))__from_suppliersvc_DONE_83">
+	<MESSAGE id = "sendMessage(filterSupplier(usercontext, filters, supplierdetails))__to_filtersvc" action = "org.estafet.scribble.example.sendMessage" nextState = "__sendMessage(filterSupplier(usercontext, filters, supplierdetails))__to_filtersvc_DONE_84"/>
+</STATE>
+<STATE id = "__sendMessage(filterSupplier(usercontext, filters, supplierdetails))__to_filtersvc_DONE_84">
+	<MESSAGE id = "receiveMessage(filtered())__from_filtersvc" action = "org.estafet.scribble.example.receiveMessage" nextState = "__receiveMessage(filtered())__from_filtersvc_DONE_85"/>
+</STATE>
+<STATE id = "__receiveMessage(filtered())__from_filtersvc_DONE_85">
+	<MESSAGE id = "request_disconnection__from_suppliersvc" action = "org.estafet.scribble.example.request_disconnection" nextState = "__request_disconnection__from_suppliersvc_DONE_86"/>
+</STATE>
+<STATE id = "__request_disconnection__from_suppliersvc_DONE_86">
+	<MESSAGE id = "sendMessage(getSuppliersRtn())__to_requestor" action = "org.estafet.scribble.example.sendMessage" nextState = "__request_connection__to_filtersvc_DONE_78"/>
+</STATE>
+<STATE id = "__receiveMessage(getContracts(uuid))__from_requestor_DONE_87">
+	<MESSAGE id = "sendMessage(deny())__to_requestor" action = "org.estafet.scribble.example.sendMessage" nextState = "__sendMessage(deny())__to_requestor_DONE_88"/>
+	<MESSAGE id = "request_connection__to_contractsvc" action = "org.estafet.scribble.example.request_connection" nextState = "__request_connection__to_contractsvc_DONE_89"/>
+</STATE>
+<STATE id = "__sendMessage(deny())__to_requestor_DONE_88">
+	<MESSAGE id = "sendMessage(exit())__to_filtersvc" action = "org.estafet.scribble.example.sendMessage" nextState = "__request_connection__to_filtersvc_DONE_78"/>
+</STATE>
+<STATE id = "__request_connection__to_contractsvc_DONE_89">
+	<MESSAGE id = "sendMessage(getContracts(uuid))__to_contractsvc" action = "org.estafet.scribble.example.sendMessage" nextState = "__sendMessage(getContracts(uuid))__to_contractsvc_DONE_90"/>
+</STATE>
+<STATE id = "__sendMessage(getContracts(uuid))__to_contractsvc_DONE_90">
+	<MESSAGE id = "receiveMessage(getContractsRtn(contractdetails))__from_contractsvc" action = "org.estafet.scribble.example.receiveMessage" nextState = "__receiveMessage(getContractsRtn(contractdetails))__from_contractsvc_DONE_91"/>
+</STATE>
+<STATE id = "__receiveMessage(getContractsRtn(contractdetails))__from_contractsvc_DONE_91">
+	<MESSAGE id = "sendMessage(filterContract(usercontext, filters, contractdetails))__to_filtersvc" action = "org.estafet.scribble.example.sendMessage" nextState = "__sendMessage(filterContract(usercontext, filters, contractdetails))__to_filtersvc_DONE_92"/>
+</STATE>
+<STATE id = "__sendMessage(filterContract(usercontext, filters, contractdetails))__to_filtersvc_DONE_92">
+	<MESSAGE id = "receiveMessage(filtered())__from_filtersvc" action = "org.estafet.scribble.example.receiveMessage" nextState = "__receiveMessage(filtered())__from_filtersvc_DONE_93"/>
+</STATE>
+<STATE id = "__receiveMessage(filtered())__from_filtersvc_DONE_93">
+	<MESSAGE id = "request_disconnection__from_contractsvc" action = "org.estafet.scribble.example.request_disconnection" nextState = "__request_disconnection__from_contractsvc_DONE_94"/>
+</STATE>
+<STATE id = "__request_disconnection__from_contractsvc_DONE_94">
+	<MESSAGE id = "sendMessage(contracts())__to_requestor" action = "org.estafet.scribble.example.sendMessage" nextState = "__request_connection__to_filtersvc_DONE_78"/>
+</STATE>
+
+</FSM>

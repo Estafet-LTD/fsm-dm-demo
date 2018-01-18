@@ -1,0 +1,45 @@
+
+digraph G {
+compound = true;
+"75" [ label="75: src_SupplierProtocol_Suppliers_authorisersvc_Suppliers_authorisersvc___requestor__authorisersvc__filtersvc__suppliersvc__contractsvc_" ];
+"75" -> "77" [ label="requestor??()" ];
+"77" [ label="77: " ];
+"77" -> "78" [ label="filtersvc!!()" ];
+"78" [ label="78: src_SupplierProtocol_Main_authorisersvc_Main_authorisersvc___requestor__authorisersvc__filtersvc__suppliersvc__contractsvc_" ];
+"78" -> "79" [ label="requestor?getSuppliers(uuid)" ];
+"79" [ label="79: src_SupplierProtocol_SuppInfo_authorisersvc_SuppInfo_authorisersvc___requestor__authorisersvc__filtersvc__suppliersvc_" ];
+"79" -> "80" [ label="requestor!deny()" ];
+"80" [ label="80: " ];
+"80" -> "78" [ label="filtersvc!exit()" ];
+"79" -> "81" [ label="suppliersvc!!()" ];
+"81" [ label="81: " ];
+"81" -> "82" [ label="suppliersvc!getsuppliers(uuid)" ];
+"82" [ label="82: " ];
+"82" -> "83" [ label="suppliersvc?getsuppliersRtn(supplierdetails)" ];
+"83" [ label="83: src_SupplierProtocol_FilterInfo_authorisersvc_FilterInfo_authorisersvc_filterSupplier_usercontext__filters__supplierdetails___authorisersvc__filtersvc_" ];
+"83" -> "84" [ label="filtersvc!filterSupplier(usercontext, filters, supplierdetails)" ];
+"84" [ label="84: " ];
+"84" -> "85" [ label="filtersvc?filtered()" ];
+"85" [ label="85: " ];
+"85" -> "86" [ label="suppliersvc-/-()" ];
+"86" [ label="86: " ];
+"86" -> "78" [ label="requestor!getSuppliersRtn()" ];
+"78" -> "87" [ label="requestor?getContracts(uuid)" ];
+"87" [ label="87: src_SupplierProtocol_ContractInfo_authorisersvc_ContractInfo_authorisersvc___requestor__authorisersvc__filtersvc__contractsvc_" ];
+"87" -> "88" [ label="requestor!deny()" ];
+"88" [ label="88: " ];
+"88" -> "78" [ label="filtersvc!exit()" ];
+"87" -> "89" [ label="contractsvc!!()" ];
+"89" [ label="89: " ];
+"89" -> "90" [ label="contractsvc!getContracts(uuid)" ];
+"90" [ label="90: " ];
+"90" -> "91" [ label="contractsvc?getContractsRtn(contractdetails)" ];
+"91" [ label="91: src_SupplierProtocol_FilterInfo_authorisersvc_FilterInfo_authorisersvc_filterContract_usercontext__filters__contractdetails___authorisersvc__filtersvc_" ];
+"91" -> "92" [ label="filtersvc!filterContract(usercontext, filters, contractdetails)" ];
+"92" [ label="92: " ];
+"92" -> "93" [ label="filtersvc?filtered()" ];
+"93" [ label="93: " ];
+"93" -> "94" [ label="contractsvc-/-()" ];
+"94" [ label="94: " ];
+"94" -> "78" [ label="requestor!contracts()" ];
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FSM>
+
+<STATE id = "START_filtersvc_390">
+	<MESSAGE id = "accept_connection__from_authorisersvc" action = "org.estafet.scribble.example.accept_connection" nextState = "__accept_connection__from_authorisersvc_DONE_392"/>
+</STATE>
+<STATE id = "__accept_connection__from_authorisersvc_DONE_392">
+	<MESSAGE id = "receiveMessage(filterSupplier(usercontext, filters, supplierdetails))__from_authorisersvc" action = "org.estafet.scribble.example.receiveMessage" nextState = "__receiveMessage(filterSupplier(usercontext, filters, supplierdetails))__from_authorisersvc_DONE_393"/>
+	<MESSAGE id = "receiveMessage(filterContract(usercontext, filters, contractdetails))__from_authorisersvc" action = "org.estafet.scribble.example.receiveMessage" nextState = "__receiveMessage(filterContract(usercontext, filters, contractdetails))__from_authorisersvc_DONE_394"/>
+	<MESSAGE id = "receiveMessage(exit())__from_authorisersvc" action = "org.estafet.scribble.example.receiveMessage" nextState = "__accept_connection__from_authorisersvc_DONE_392"/>
+</STATE>
+<STATE id = "__receiveMessage(filterSupplier(usercontext, filters, supplierdetails))__from_authorisersvc_DONE_393">
+	<MESSAGE id = "sendMessage(filtered())__to_authorisersvc" action = "org.estafet.scribble.example.sendMessage" nextState = "__accept_connection__from_authorisersvc_DONE_392"/>
+</STATE>
+<STATE id = "__receiveMessage(filterContract(usercontext, filters, contractdetails))__from_authorisersvc_DONE_394">
+	<MESSAGE id = "sendMessage(filtered())__to_authorisersvc" action = "org.estafet.scribble.example.sendMessage" nextState = "__accept_connection__from_authorisersvc_DONE_392"/>
+</STATE>
+
+</FSM>

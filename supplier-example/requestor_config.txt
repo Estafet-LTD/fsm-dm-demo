@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FSM>
+
+<STATE id = "START_requestor_31">
+	<MESSAGE id = "request_connection__to_loginsvc" action = "org.estafet.scribble.example.request_connection" nextState = "__request_connection__to_loginsvc_DONE_33"/>
+</STATE>
+<STATE id = "__request_connection__to_loginsvc_DONE_33">
+	<MESSAGE id = "sendMessage(login(username, password))__to_loginsvc" action = "org.estafet.scribble.example.sendMessage" nextState = "__sendMessage(login(username, password))__to_loginsvc_DONE_34"/>
+</STATE>
+<STATE id = "__sendMessage(login(username, password))__to_loginsvc_DONE_34">
+	<MESSAGE id = "receiveMessage(loginFailure())__from_loginsvc" action = "org.estafet.scribble.example.receiveMessage" nextState = "__receiveMessage(loginFailure())__from_loginsvc_DONE_35"/>
+	<MESSAGE id = "receiveMessage(loginSuccess(uuid))__from_loginsvc" action = "org.estafet.scribble.example.receiveMessage" nextState = "__receiveMessage(loginSuccess(uuid))__from_loginsvc_DONE_36"/>
+</STATE>
+<STATE id = "__receiveMessage(loginFailure())__from_loginsvc_DONE_35">
+	<MESSAGE id = "request_disconnection__from_loginsvc" action = "org.estafet.scribble.example.request_disconnection" nextState = "START_requestor_31"/>
+</STATE>
+<STATE id = "__receiveMessage(loginSuccess(uuid))__from_loginsvc_DONE_36">
+	<MESSAGE id = "request_connection__to_authorisersvc" action = "org.estafet.scribble.example.request_connection" nextState = "__request_connection__to_authorisersvc_DONE_37"/>
+</STATE>
+<STATE id = "__request_connection__to_authorisersvc_DONE_37">
+	<MESSAGE id = "sendMessage(getSuppliers(uuid))__to_authorisersvc" action = "org.estafet.scribble.example.sendMessage" nextState = "__sendMessage(getSuppliers(uuid))__to_authorisersvc_DONE_38"/>
+	<MESSAGE id = "sendMessage(getContracts(uuid))__to_authorisersvc" action = "org.estafet.scribble.example.sendMessage" nextState = "__sendMessage(getContracts(uuid))__to_authorisersvc_DONE_39"/>
+</STATE>
+<STATE id = "__sendMessage(getSuppliers(uuid))__to_authorisersvc_DONE_38">
+	<MESSAGE id = "receiveMessage(deny())__from_authorisersvc" action = "org.estafet.scribble.example.receiveMessage" nextState = "__request_connection__to_authorisersvc_DONE_37"/>
+	<MESSAGE id = "receiveMessage(getSuppliersRtn())__from_authorisersvc" action = "org.estafet.scribble.example.receiveMessage" nextState = "__request_connection__to_authorisersvc_DONE_37"/>
+</STATE>
+<STATE id = "__sendMessage(getContracts(uuid))__to_authorisersvc_DONE_39">
+	<MESSAGE id = "receiveMessage(deny())__from_authorisersvc" action = "org.estafet.scribble.example.receiveMessage" nextState = "__request_connection__to_authorisersvc_DONE_37"/>
+	<MESSAGE id = "receiveMessage(contracts())__from_authorisersvc" action = "org.estafet.scribble.example.receiveMessage" nextState = "__request_connection__to_authorisersvc_DONE_37"/>
+</STATE>
+
+</FSM>

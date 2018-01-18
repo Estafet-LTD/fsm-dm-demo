@@ -1,0 +1,21 @@
+digraph G {
+compound = true;
+
+"409" [label="START_suppliersvc_409"];
+"409"->"411" [label="__accept_connection__from_authorisersvc"];
+"411" [label="__accept_connection__from_authorisersvc_DONE_411"];
+"411"->"412" [label="__receiveMessage(getsuppliers(uuid))__from_authorisersvc"];
+"412" [label="__receiveMessage(getsuppliers(uuid))__from_authorisersvc_DONE_412"];
+"412"->"413" [label="__sendMessage(getsuppliersRtn(supplierdetails))__to_authorisersvc"];
+"413" [label="__sendMessage(getsuppliersRtn(supplierdetails))__to_authorisersvc_DONE_413"];
+"413"->"414" [label="__request_disconnection__from_authorisersvc"];
+"414" [label="__request_disconnection__from_authorisersvc_DONE_414"];
+"414"->"415" [label="__accept_connection__from_authorisersvc"];
+"415" [label="__accept_connection__from_authorisersvc_DONE_415"];
+"415"->"416" [label="__receiveMessage(getsuppliers(uuid))__from_authorisersvc"];
+"416" [label="__receiveMessage(getsuppliers(uuid))__from_authorisersvc_DONE_416"];
+"416"->"417" [label="__sendMessage(getsuppliersRtn(supplierdetails))__to_authorisersvc"];
+"417" [label="__sendMessage(getsuppliersRtn(supplierdetails))__to_authorisersvc_DONE_417"];
+"417"->"414" [label="__request_disconnection__from_authorisersvc"];
+}
+

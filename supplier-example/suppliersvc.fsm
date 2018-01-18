@@ -1,0 +1,20 @@
+
+digraph G {
+compound = true;
+"409" [ label="409: src_SupplierProtocol_Suppliers_suppliersvc_Suppliers_suppliersvc___authorisersvc__suppliersvc_" ];
+"409" -> "411" [ label="authorisersvc??()" ];
+"411" [ label="411: " ];
+"411" -> "412" [ label="authorisersvc?getsuppliers(uuid)" ];
+"412" [ label="412: " ];
+"412" -> "413" [ label="authorisersvc!getsuppliersRtn(supplierdetails)" ];
+"413" [ label="413: " ];
+"413" -> "414" [ label="authorisersvc-/-()" ];
+"414" [ label="414: src_SupplierProtocol_Main_suppliersvc_Main_suppliersvc___authorisersvc__suppliersvc_" ];
+"414" -> "415" [ label="authorisersvc??()" ];
+"415" [ label="415: " ];
+"415" -> "416" [ label="authorisersvc?getsuppliers(uuid)" ];
+"416" [ label="416: " ];
+"416" -> "417" [ label="authorisersvc!getsuppliersRtn(supplierdetails)" ];
+"417" [ label="417: " ];
+"417" -> "414" [ label="authorisersvc-/-()" ];
+}

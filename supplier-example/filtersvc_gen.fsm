@@ -1,0 +1,15 @@
+digraph G {
+compound = true;
+
+"390" [label="START_filtersvc_390"];
+"390"->"392" [label="__accept_connection__from_authorisersvc"];
+"392" [label="__accept_connection__from_authorisersvc_DONE_392"];
+"392"->"393" [label="__receiveMessage(filterSupplier(usercontext, filters, supplierdetails))__from_authorisersvc"];
+"393" [label="__receiveMessage(filterSupplier(usercontext, filters, supplierdetails))__from_authorisersvc_DONE_393"];
+"393"->"392" [label="__sendMessage(filtered())__to_authorisersvc"];
+"392"->"394" [label="__receiveMessage(filterContract(usercontext, filters, contractdetails))__from_authorisersvc"];
+"394" [label="__receiveMessage(filterContract(usercontext, filters, contractdetails))__from_authorisersvc_DONE_394"];
+"394"->"392" [label="__sendMessage(filtered())__to_authorisersvc"];
+"392"->"392" [label="__receiveMessage(exit())__from_authorisersvc"];
+}
+
